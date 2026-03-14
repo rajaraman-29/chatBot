@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>AI Assistant</title>
+    <link rel="stylesheet" href="/static/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+</head>
+
+<body>
+
+    <div class="chat-app">
+        <div class="app-header">
+            <i class="fa-solid fa-desktop"></i>
+            <h2>TechMate</h2>
+        </div>
+
+        <div id="chat">
+            <div class="message-wrapper bot-wrapper">
+                <div class="avatar-gradient">
+                    <i class="fa-solid fa-robot"></i>
+                </div>
+                <div class="bot">Hello! 👋
+                    I help recommend smartphones and laptops.
+                    Tell me your budget and what you will use it for!</div>
+            </div>
+        </div>
+
+        <div class="suggestions">
+            <button onclick="askQuestion('Suggest a smartphone under 20000')">Phone under 20000</button>
+            <button onclick="askQuestion('Best laptop for coding under 80000')">Laptop for coding</button>
+            <button onclick="askQuestion('Phone with best camera under 30000')">Camera phone</button>
+        </div>
+
+        <div class="input-area">
+            <input type="text" id="userInput" placeholder="Message">
+            <button id="sendBtn" class="send-btn" onclick="sendMessage()">
+                <i class="fa-solid fa-paper-plane" id="sendIcon"></i>
+            </button>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <script src="/static/script.js"></script>
+
+</body>
+
+</html>
