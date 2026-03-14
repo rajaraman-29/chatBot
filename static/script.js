@@ -172,7 +172,7 @@ async function sendMessage() {
 
         addMessage(
 
-            "Error connecting to AI service.",
+            error.message || "Error connecting to AI service.",
 
             "bot"
 
