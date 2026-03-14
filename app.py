@@ -1,12 +1,14 @@
 import os
 import requests
 from flask import Flask, request, jsonify, render_template
+from flask_cors import CORS
 from dotenv import load_dotenv
 
 # Load environment variables from .env file
 load_dotenv()
 
 app = Flask(__name__)
+CORS(app)  # Allow cross-origin requests if the user opens index.html locally
 
 # Securely stored API Key
 OPENROUTER_API_KEY = os.getenv("OPENROUTER_API_KEY")
@@ -46,7 +48,10 @@ def chat():
         print("Error: OpenRouter API timed out after 30 seconds.")
         return jsonify({"error": "The free AI server is currently overloaded and timed out. Please try again."}), 504
     except requests.exceptions.RequestException as e:
-        print(f"Error communicating with OpenRouter: {e}")
+        error_msg = f"Error communicating with OpenRouter: {e}"
+        if hasattr(e, 'response') and e.response is not None:
+             error_msg += f" Response: {e.response.text}"
+        print(error_msg)
         return jsonify({"error": "Failed to connect to AI service"}), 500
 
 if __name__ == '__main__':
